@@ -12,8 +12,9 @@ struct ContentView: View {
     let missions: [Mission] = Bundle.main.decode("missions.json")
     
     var body: some View {
-        Text("\(astronauts.count)")
+        Text("There are around \(astronauts.count) astronauts!")
             .padding()
+            .font(.title2)
     }
 }
 
