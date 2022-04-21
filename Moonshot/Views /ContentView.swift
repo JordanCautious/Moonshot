@@ -23,6 +23,7 @@ struct ContentView: View {
                         NavigationLink {
                             MissionView(mission: mission, astronauts: astronauts)
                         } label: {
+                            // Mission Labels
                             VStack {
                                 Image(mission.image)
                                     .resizable()
@@ -63,7 +64,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().preferredColorScheme(.dark)
-        ContentView().preferredColorScheme(.light)
+        ContentView()
+            .preferredColorScheme(.dark)
+        ContentView()
+            .preferredColorScheme(.light)
     }
 }

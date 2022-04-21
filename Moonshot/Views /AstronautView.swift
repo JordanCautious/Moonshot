@@ -16,7 +16,10 @@ struct AstronautView: View {
                 Image(astronaut.id)
                     .resizable()
                     .scaledToFit()
-                
+
+                Divider()
+                    .padding()
+
                 Text(astronaut.description)
                     .padding()
             }
@@ -32,5 +35,6 @@ struct AstronautView_Previews: PreviewProvider {
     
     static var previews: some View {
         AstronautView(astronaut: astronauts["armstrong"]!)
+            .preferredColorScheme(.dark)
     }
 }

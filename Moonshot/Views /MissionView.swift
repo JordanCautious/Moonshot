@@ -26,6 +26,7 @@ struct MissionView: View {
                         .frame(maxWidth: geomerty.size.width * 0.55)
                         .padding(.top)
                     
+                    // Mission Highlights
                     VStack(alignment: .leading) {
                         
                         Divider()
@@ -47,6 +48,7 @@ struct MissionView: View {
                     }
                     .padding(.horizontal)
                     
+                    // Crew
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(crew, id: \.role) { crewMember in
