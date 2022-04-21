@@ -23,7 +23,7 @@ struct ContentView: View {
                         NavigationLink {
                             MissionView(mission: mission, astronauts: astronauts)
                         } label: {
-                            // Mission Labels
+                            // Apollo Mission Labels
                             VStack {
                                 Image(mission.image)
                                     .resizable()
@@ -55,7 +55,7 @@ struct ContentView: View {
                 }
                 .padding([.horizontal, .bottom])
             }
-            .navigationTitle("Moonshot")
+            .navigationTitle("Moonshot!")
             .background(.darkBackground)
             .preferredColorScheme(.dark)
         }

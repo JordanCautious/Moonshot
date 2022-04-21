@@ -16,6 +16,18 @@ struct MissionView: View {
     let mission: Mission
     let crew: [CrewMember]
     
+    init(mission: Mission, astronauts: [String: Astronaut]) {
+        self.mission = mission
+        
+        self.crew = mission.crew.map { member in
+            if let astronaut = astronauts[member.name] {
+                return CrewMember(role: member.role, astronaut: astronaut)
+            } else {
+                fatalError("Missing \(member.name)")
+            }
+        }
+    }
+    
     var body: some View {
         GeometryReader { geomerty in
             ScrollView {
@@ -26,59 +38,8 @@ struct MissionView: View {
                         .frame(maxWidth: geomerty.size.width * 0.55)
                         .padding(.top)
                     
-                    // Mission Highlights
-                    VStack(alignment: .leading) {
-                        
-                        Divider()
-                            .padding(.vertical)
-                        
-                        Text("Misson Highlights")
-                            .font(.title.bold())
-                            .padding(.bottom, 5)
-                        
-                        Text(mission.description)
-                        
-                        
-                        Divider()
-                            .padding(.vertical)
-                        
-                        Text("Crew")
-                            .font(.title2.bold())
-                            .padding(.bottom, 5)
-                    }
-                    .padding(.horizontal)
-                    
-                    // Crew
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(crew, id: \.role) { crewMember in
-                                NavigationLink {
-                                    AstronautView(astronaut: crewMember.astronaut)
-                                } label: {
-                                    HStack(spacing: 10) {
-                                        Image(crewMember.astronaut.id)
-                                            .resizable()
-                                            .frame(width: 104, height: 72)
-                                            .clipShape(Capsule())
-                                            .overlay(
-                                            Capsule()
-                                                .strokeBorder(.white, lineWidth: 1)
-                                            )
-                                                                                
-                                        VStack(alignment: .leading) {
-                                            Text(crewMember.astronaut.name)
-                                                .foregroundColor(.white)
-                                                .font(.headline)
-                                            
-                                            Text(crewMember.role)
-                                                .foregroundColor(.secondary)
-                                        }
-                                    }
-                                    .padding(.horizontal)
-                                }
-                            }
-                        }
-                    }
+                    missionHighlights
+                    crewRow
                 }
                 .padding(.bottom)
             }
@@ -88,14 +49,57 @@ struct MissionView: View {
         .background(.darkBackground)
     }
     
-    init(mission: Mission, astronauts: [String: Astronaut]) {
-        self.mission = mission
-        
-        self.crew = mission.crew.map { member in
-            if let astronaut = astronauts[member.name] {
-                return CrewMember(role: member.role, astronaut: astronaut)
-            } else {
-                fatalError("Missing \(member.name)")
+    var missionHighlights: some View {
+        VStack(alignment: .leading) {
+            
+            Divider()
+                .padding(.vertical)
+            
+            Text("Misson Highlights")
+                .font(.title.bold())
+                .padding(.bottom, 5)
+            
+            Text(mission.description)
+            
+            Divider()
+                .padding(.vertical)
+            
+            Text("Crew")
+                .font(.title2.bold())
+                .padding(.bottom, 5)
+        }
+        .padding(.horizontal)
+    }
+
+    var crewRow: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(crew, id: \.role) { crewMember in
+                    NavigationLink {
+                        AstronautView(astronaut: crewMember.astronaut)
+                    } label: {
+                        HStack(spacing: 10) {
+                            Image(crewMember.astronaut.id)
+                                .resizable()
+                                .frame(width: 104, height: 72)
+                                .clipShape(Capsule())
+                                .overlay(
+                                Capsule()
+                                    .strokeBorder(.white, lineWidth: 1)
+                                )
+                                                                    
+                            VStack(alignment: .leading) {
+                                Text(crewMember.astronaut.name)
+                                    .foregroundColor(.white)
+                                    .font(.headline)
+                                
+                                Text(crewMember.role)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                }
             }
         }
     }
