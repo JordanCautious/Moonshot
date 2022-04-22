@@ -37,7 +37,6 @@ struct MissionView: View {
                         .scaledToFit()
                         .frame(maxWidth: geomerty.size.width * 0.55)
                         .padding(.top)
-                    
                     missionHighlights
                     crewRow
                 }
@@ -93,8 +92,12 @@ struct MissionView: View {
                                     .foregroundColor(.white)
                                     .font(.headline)
                                 
-                                Text(crewMember.role)
-                                    .foregroundColor(.secondary)
+                                switch crewMember.role {
+                                case "Commander": Text(crewMember.role)
+                                        .foregroundColor(.green)
+                                default: Text(crewMember.role)
+                                        .foregroundColor(.secondary)
+                                }
                             }
                         }
                         .padding(.horizontal)
