@@ -52,22 +52,22 @@ struct MissionView: View {
         VStack(alignment: .leading) {
             
             Divider()
-                .padding(.vertical)
+                .padding()
             
             Text("Misson Highlights")
                 .font(.title.bold())
-                .padding(.bottom, 5)
+                .padding(.bottom, 3)
             
             Text(mission.description)
             
             Divider()
-                .padding(.vertical)
+                .padding(5)
             
             Text("Crew")
                 .font(.title2.bold())
                 .padding(.bottom, 5)
         }
-        .padding(.horizontal)
+        .padding()
     }
 
     var crewRow: some View {

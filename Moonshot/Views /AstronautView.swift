@@ -18,10 +18,10 @@ struct AstronautView: View {
                     .scaledToFit()
 
                 Divider()
-                    .padding()
+                    .padding(10)
 
                 Text(astronaut.description)
-                    .padding()
+                    .padding(.horizontal)
             }
         }
         .background(.darkBackground)

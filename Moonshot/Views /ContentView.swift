@@ -32,9 +32,14 @@ struct ContentView: View {
                                     .padding()
                                                                 
                                 VStack {
-                                    Text(mission.displayName)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
+                                    switch mission.displayName {
+                                    case "Apollo 13": Text(mission.displayName)
+                                            .font(.headline)
+                                            .foregroundColor(.yellow)
+                                    default: Text(mission.displayName)
+                                            .font(.headline)
+                                            .foregroundColor(.white)
+                                    }
                                     
                                     Text(mission.formattedLaunchDate)
                                         .font(.caption)
